@@ -7,7 +7,7 @@ import com.kotlin.anggie.submissions3.R
 import com.kotlin.anggie.submissions3.fragment.FavoriteFragment
 import com.kotlin.anggie.submissions3.fragment.NextMatchFragment
 import com.kotlin.anggie.submissions3.fragment.PrevMatchFragment
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.nav_bottom
 
 class MainActivity : AppCompatActivity() {
 

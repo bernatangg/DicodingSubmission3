@@ -24,7 +24,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MatchDetailActivity: AppCompatActivity(), MatchDetailView {
+class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
 
     lateinit var presenter: MatchDetailPresenter
     lateinit var event: Event
@@ -33,15 +33,17 @@ class MatchDetailActivity: AppCompatActivity(), MatchDetailView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_match_detail)
+
+        event = intent.getParcelableExtra(Constant.EVENT)
+
         supportActionBar?.title = "Match Detail"
     }
 
     override fun onResume() {
         super.onResume()
-        val dbHelper = DBHelper.getInstance(this)
-        presenter = MatchDetailPresenter(dbHelper, this, ApiService.instance)
+        val databaseHelper = DBHelper.getInstance(this)
+        presenter = MatchDetailPresenter(databaseHelper, this, ApiService.instance)
         setupView(event)
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -69,8 +71,8 @@ class MatchDetailActivity: AppCompatActivity(), MatchDetailView {
         Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show()
     }
 
-    override fun setAsFavorite(favorite: Boolean) {
-        if (favorite) {
+    override fun setAsFavorite(favourite: Boolean) {
+        if (favourite) {
             menu.getItem(0).icon = ContextCompat.getDrawable(this,
                     R.drawable.ic_star_black_24dp)
         } else {
@@ -162,7 +164,7 @@ class MatchDetailActivity: AppCompatActivity(), MatchDetailView {
         presenter.composeSubscriber()
         super.onDestroy()
     }
-
 }
+
 
 

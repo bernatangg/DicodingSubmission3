@@ -14,7 +14,9 @@ import java.util.Locale
 class MatchAdapter(private val events: List<Event?>,
                    private val listener: (pos: Int) -> Unit) :
         RecyclerView.Adapter<MatchAdapter.TeamViewHolder>() {
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): TeamViewHolder {
+
+    override fun onCreateViewHolder(p0: ViewGroup,
+                                    p1: Int): TeamViewHolder {
         return TeamViewHolder(
                 LayoutInflater.from(p0.context).inflate(R.layout.item_match, p0, false)
         )
@@ -22,17 +24,18 @@ class MatchAdapter(private val events: List<Event?>,
 
     override fun getItemCount() = events.size
 
-    override fun onBindViewHolder(p0: TeamViewHolder, p1: Int) {
+    override fun onBindViewHolder(p0: TeamViewHolder,
+                                  p1: Int) {
         p0.bindItem(events[p1], p1)
     }
 
+    inner class TeamViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    inner class TeamViewHolder(view: View): RecyclerView.ViewHolder(view) {
         private val matchDate: TextView = view.findViewById(R.id.tv_date)
         private val teamName1: TextView = view.findViewById(R.id.tv_team_1)
-        private val teamScore1: TextView = view.findViewById(R.id.tv_skor_team1)
+        private val teamScore1: TextView = view.findViewById(R.id.tv_skor_team_1)
         private val teamName2: TextView = view.findViewById(R.id.tv_team_2)
-        private val teamScore2: TextView = view.findViewById(R.id.tv_skor_team2)
+        private val teamScore2: TextView = view.findViewById(R.id.tv_skor_team_2)
 
         fun bindItem(event: Event?,
                      pos: Int) {
@@ -53,7 +56,6 @@ class MatchAdapter(private val events: List<Event?>,
                 teamScore2.text = event.intAwayScore
 
                 itemView.setOnClickListener { listener(pos) }
-
             }
         }
     }

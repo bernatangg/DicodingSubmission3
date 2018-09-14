@@ -31,6 +31,7 @@ class MatchDetailPresenter(private val databaseHelper: DBHelper,
                                 }
                             }
                         }, {
+                            //                         Log.e("Get Team", "Failed", it)
                             listener.onFailed(it.message)
                         })
         )
