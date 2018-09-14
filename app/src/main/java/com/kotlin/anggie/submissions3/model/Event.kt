@@ -6,8 +6,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Event(
-        @SerializedName("idEvent") val idEvent:String? = "",
-        @SerializedName("idSoccerXML") val idSoccerXML:String = "",
+        @SerializedName("idEvent") val idEvent: String? = "",
+        @SerializedName("idSoccerXML") val idSoccerXML: String? = "",
         @SerializedName("strEvent") val strEvent: String? = "",
         @SerializedName("strFilename") val strFilename: String? = "",
         @SerializedName("strSport") val strSport: String? = "",
@@ -42,7 +42,7 @@ data class Event(
         @SerializedName("intHomeShots") val intHomeShots: String? = "",
         @SerializedName("intAwayShots") val intAwayShots: String? = "",
         @SerializedName("dateEvent") val dateEvent: String? = "",
-        @SerializedName("strDate") val strDate:String? = "",
+        @SerializedName("strDate") val strDate: String? = "",
         @SerializedName("strTime") val strTime: String? = "",
         @SerializedName("strTVStation") val strTVStation: String? = "",
         @SerializedName("idHomeTeam") val idHomeTeam: String? = "",

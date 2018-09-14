@@ -9,7 +9,7 @@ import com.kotlin.anggie.submissions3.R
 import com.kotlin.anggie.submissions3.model.Event
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 class MatchAdapter(private val events: List<Event?>,
                    private val listener: (pos: Int) -> Unit) :

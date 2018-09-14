@@ -39,5 +39,4 @@ data class Team(
         @SerializedName("strTeamBanner") val strTeamBanner: String? = "",
         @SerializedName("strYoutube") val strYoutube: String? = "",
         @SerializedName("strLocked") val strLocked: String? = ""
-
 )

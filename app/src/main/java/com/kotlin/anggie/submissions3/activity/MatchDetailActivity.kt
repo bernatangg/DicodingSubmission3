@@ -92,23 +92,42 @@ class MatchDetailActivity: AppCompatActivity(), MatchDetailView {
         }
         tv_team_1.text = event.strHomeTeam
         presenter.getTeam(event.idHomeTeam ?: "", object : GetTeamListener {
+            override fun onLoading() {
+                progress_logo_1.visibility = View.VISIBLE
+            }
+
             override fun onSuccess(team: Team) {
                 Glide.with(this@MatchDetailActivity).load(team.strTeamLogo).into(iv_logo_team1)
                 progress_logo_1.visibility = View.GONE
             }
 
             override fun onFailed(message: String?) {
+                progress_logo_1.visibility = View.GONE
+                Toast.makeText(this@MatchDetailActivity, message, Toast.LENGTH_SHORT).show()
+            }
+        })
+        tv_skor_team_1.text = event.intHomeScore
+        tv_formation_team_1.text = event.strHomeFormation
+
+        tv_team_2.text = event.strAwayTeam
+        presenter.getTeam(event.idAwayTeam ?: "", object : GetTeamListener {
+            override fun onLoading() {
+                progress_logo_2.visibility = View.VISIBLE
+            }
+
+            override fun onSuccess(team: Team) {
+                Glide.with(this@MatchDetailActivity).load(team.strTeamLogo).into(iv_logo_team2)
+                progress_logo_2.visibility = View.GONE
+            }
+
+            override fun onFailed(message: String?) {
                 progress_logo_2.visibility = View.GONE
                 Toast.makeText(this@MatchDetailActivity, message, Toast.LENGTH_SHORT).show()
             }
-
-            override fun onLoading() {
-                progress_logo_1.visibility = View.VISIBLE
-            }
         })
-
-        tv_skor_team2.text = event.intAwayScore
+        tv_skor_team_2.text = event.intAwayScore
         tv_formation_team_2.text = event.strAwayFormation
+
         if (matchIsDone) {
             tv_goal_team_1.text = event.strHomeGoalDetails.changeNewLine()
             tv_shots_team_1.text = event.intHomeShots
@@ -132,6 +151,7 @@ class MatchDetailActivity: AppCompatActivity(), MatchDetailView {
             tv_substitutes_team_1.text = event.strHomeLineupSubstitutes.changeNewLine()
             tv_substitutes_team_2.text = event.strAwayLineupSubstitutes.changeNewLine()
         }
+
     }
 
     private fun String?.changeNewLine(): String? {
