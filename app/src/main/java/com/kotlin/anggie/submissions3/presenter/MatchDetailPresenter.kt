@@ -47,10 +47,11 @@ class MatchDetailPresenter(private val databaseHelper: DBHelper,
     }
 
     fun setFavorite(event: Event) {
-        if (favState) {
-            removeFromFavorite(event.idEvent ?: "")
-        } else {
+        val favState = databaseHelper.isMatchFavorite(event.idEvent.toString())
+        if (!favState) {
             addToFavorite(event)
+        } else {
+            removeFromFavorite(event.idEvent ?: "")
         }
     }
 
