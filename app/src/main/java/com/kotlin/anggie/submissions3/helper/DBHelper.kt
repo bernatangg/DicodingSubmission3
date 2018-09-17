@@ -3,9 +3,11 @@ package com.kotlin.anggie.submissions3.helper
 import android.content.Context
 import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
+import android.util.Log
 import com.google.gson.Gson
 import com.kotlin.anggie.submissions3.model.Event
 import org.jetbrains.anko.db.*
+import java.util.logging.Logger
 
 class DBHelper(ctx: Context): ManagedSQLiteOpenHelper(
         ctx, "Football.db", null, 1) {
@@ -28,6 +30,7 @@ class DBHelper(ctx: Context): ManagedSQLiteOpenHelper(
     private val gson = Gson()
 
     override fun onCreate(db: SQLiteDatabase) {
+        // Here you create tables
         db.createTable(
                 TABLE_FAVORITE, true,
                 EVENT_ID to TEXT + PRIMARY_KEY,
@@ -38,6 +41,7 @@ class DBHelper(ctx: Context): ManagedSQLiteOpenHelper(
     override fun onUpgrade(db: SQLiteDatabase,
                            oldVersion: Int,
                            newVersion: Int) {
+        // Here you can upgrade tables, as usual
         db.dropTable(TABLE_FAVORITE, true)
     }
 
@@ -48,7 +52,8 @@ class DBHelper(ctx: Context): ManagedSQLiteOpenHelper(
             val stringEvent = query.exec {
                 parseList(StringParser)
             }
-            stringEvent.forEach{
+            stringEvent.forEach {
+                Log.i("it", it)
                 val event = gson.fromJson<Event>(it, Event::class.java)
                 listEvent.add(event)
             }
@@ -61,8 +66,7 @@ class DBHelper(ctx: Context): ManagedSQLiteOpenHelper(
         try {
             val content = gson.toJson(event)
             instance?.use {
-                insert(TABLE_FAVORITE, EVENT_ID to event.idEvent,
-                        EVENT_CONTENT to content)
+                insert(TABLE_FAVORITE, EVENT_ID to event.idEvent, EVENT_CONTENT to content)
             }
             listener?.onSuccess()
         } catch (e: Throwable) {
@@ -76,7 +80,6 @@ class DBHelper(ctx: Context): ManagedSQLiteOpenHelper(
             instance?.use {
                 val items = delete(TABLE_FAVORITE,
                         "$EVENT_ID = {eventId}", "eventId" to eventId)
-
                 if (items > 0) {
                     listener?.onSuccess()
                 }
@@ -86,17 +89,20 @@ class DBHelper(ctx: Context): ManagedSQLiteOpenHelper(
         }
     }
 
-    fun isMatchFavorite(eventId: String): Boolean {
+    fun isMatchFavorite(eventId: String) : Boolean {
         var result = false
         instance?.use {
             val query = select(TABLE_FAVORITE, EVENT_CONTENT)
                     .whereArgs("$EVENT_ID = {eventId}",
                             "eventId" to eventId)
-            val event = query.exec { count }
+            val event = query.exec {
+                count
+            }
             result = event > 0
         }
         return result
     }
+
 }
 
 interface DatabaseListener {

@@ -152,6 +152,29 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
 
             tv_substitutes_team_1.text = event.strHomeLineupSubstitutes.changeNewLine()
             tv_substitutes_team_2.text = event.strAwayLineupSubstitutes.changeNewLine()
+            
+        } else if (!matchIsDone) {
+            tv_goal_team_1.text = event.strHomeGoalDetails.changeNewLine()
+            tv_shots_team_1.text = event.intHomeShots
+
+            tv_goal_team_2.text = event.strAwayGoalDetails.changeNewLine()
+            tv_shots_team_2.text = event.intAwayShots
+
+            // Lineups
+            tv_goalkeeper_team_1.text = event.strHomeLineupGoalkeeper.changeNewLine()
+            tv_goalkeeper_team_2.text = event.strAwayLineupGoalkeeper.changeNewLine()
+
+            tv_defense_team_1.text = event.strHomeLineupDefense.changeNewLine()
+            tv_defense_team_2.text = event.strAwayLineupDefense.changeNewLine()
+
+            tv_midfield_team_1.text = event.strHomeLineupMidfield.changeNewLine()
+            tv_midfield_team_2.text = event.strAwayLineupMidfield.changeNewLine()
+
+            tv_forward_team_1.text = event.strHomeLineupForward.changeNewLine()
+            tv_forward_team_2.text = event.strAwayLineupForward.changeNewLine()
+
+            tv_substitutes_team_1.text = event.strHomeLineupSubstitutes.changeNewLine()
+            tv_substitutes_team_2.text = event.strAwayLineupSubstitutes.changeNewLine()
         }
 
     }
