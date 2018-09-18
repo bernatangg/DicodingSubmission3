@@ -73,6 +73,10 @@ class PrevMatchFragment : Fragment(), PrevMatchView {
                 matches.addAll(homeScreenState.eventResponse)
                 adapter.notifyDataSetChanged()
                 swipe_prev_layout.isRefreshing = false
+
+                if (matches.isEmpty()) {
+                    Toast.makeText(context, getString(R.string.blm_ada_tanding), Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

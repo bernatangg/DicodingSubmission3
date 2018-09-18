@@ -15,4 +15,5 @@
     <string name="next_match">Next Match</string>
     <string name="favorite">Favorite</string>
     <string name="toast_belum_favorite">Belum ada pertandingan favorite</string>
+    <string name="blm_ada_tanding">Belum ada pertandingan dalam liga ini</string>
 </resources>
