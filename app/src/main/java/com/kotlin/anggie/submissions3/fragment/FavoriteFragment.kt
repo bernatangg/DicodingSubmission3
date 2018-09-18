@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -74,6 +75,10 @@ class FavoriteFragment: Fragment(), FavoriteMatchView {
                 matches.addAll(homeScreenState.eventResponse)
                 adapter.notifyDataSetChanged()
                 swipe_fav_layout.isRefreshing = false
+
+                if (matches.isEmpty()) {
+                    Toast.makeText(context, getString(R.string.toast_belum_favorite), Toast.LENGTH_SHORT).show()
+                }
             }
 
         }

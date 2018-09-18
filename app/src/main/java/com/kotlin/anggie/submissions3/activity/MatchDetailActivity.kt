@@ -152,7 +152,7 @@ class MatchDetailActivity : AppCompatActivity(), MatchDetailView {
 
             tv_substitutes_team_1.text = event.strHomeLineupSubstitutes.changeNewLine()
             tv_substitutes_team_2.text = event.strAwayLineupSubstitutes.changeNewLine()
-            
+
         } else if (!matchIsDone) {
             tv_goal_team_1.text = event.strHomeGoalDetails.changeNewLine()
             tv_shots_team_1.text = event.intHomeShots
